@@ -23,7 +23,7 @@ stage("Get dependencies and publish build info"){
 }
     stage("Build/Test project"){
         dir ('build') {
-          sh "cmake ../ && cmake --build ."
+          sh "cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release && cmake --build ."
         }
     }
 }
