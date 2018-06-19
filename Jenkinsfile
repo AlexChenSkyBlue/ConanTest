@@ -21,9 +21,14 @@ stage("Get dependencies and publish build info"){
       server.publishBuildInfo b
     }
 }
-    stage("Build/Test project"){
+stage("Build/Test project"){
         dir ('build') {
           sh "cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release && cmake --build ."
         }
+    }
+stage("Upload packages"){
+        String command = "upload * --all -r ${serverName} --confirm"
+        def b = client.run(command: command)
+        server.publishBuildInfo b
     }
 }
