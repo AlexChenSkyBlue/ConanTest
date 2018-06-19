@@ -26,6 +26,9 @@ stage("Build/Test project"){
           sh "cmake .. -G 'Unix Makefiles' -DCMAKE_BUILD_TYPE=Release && cmake --build ."
         }
     }
+stage("Test recipe"){
+        client.run(command: "create")
+}
 stage("Upload packages"){
         String command = "upload * --all -r ${serverName} --confirm"
         def b = client.run(command: command)
