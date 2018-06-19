@@ -17,7 +17,7 @@ stage("Configure Artifactory/Conan"){
 stage("Get dependencies and publish build info"){
     sh "mkdir -p build"
     dir ('build') {
-      def b = client.run(command: "install .. -s os="Linux" -s compiler="gcc"")
+      def b = client.run(command: "install .. -s os='Linux' -s compiler='gcc'")
       server.publishBuildInfo b
     }
 }
