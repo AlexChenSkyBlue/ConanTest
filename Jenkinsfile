@@ -27,7 +27,7 @@ stage("Build/Test project"){
         }
     }
 stage("Test recipe"){
-        client.run(command: "create")
+        client.run(command: "create . demo/testing")
 }
 stage("Upload packages"){
         String command = "upload * --all -r ${serverName} --confirm"
